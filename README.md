@@ -25,7 +25,9 @@ If script already installed, you can just run one command to reconfigure paramet
 ```bash
 ./ipv6-proxy-server.sh -s 64 -c 20 -u username2 -p password2 -t socks5 -r 2
 ```
-
+```bash
+./ipv6-proxy-server.sh -s 64 -c 1500 --start-port 30000 -r 30
+```
 Old instance will be disabled and new starts without reinstallation very quickly.
 
 
