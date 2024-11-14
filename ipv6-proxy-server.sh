@@ -7,28 +7,28 @@ fi;
 
 # Program help info for users
 function usage() { echo "Usage: $0 [-s | --subnet <16|32|48|64|80|96|112> proxy subnet (default 64)] 
-                          [-c | --proxy-count <number> count of proxies] 
+                          [-c | --proxy-count <number> số lượng proxy] 
                           [-u | --username <string> proxy auth username] 
                           [-p | --password <string> proxy password]
-                          [--random <bool> generate random username/password for each IPv4 backconnect proxy instead of predefined (default false)] 
-                          [-t | --proxies-type <http|socks5> result proxies type (default http)]
-                          [-r | --rotating-interval <0-59> rotating time of external proxies address in minutes (default 0, disabled)]
-                          [--rotate-every-request <bool> use random external address for every request (--rotating-interval will be ignored)]
-                          [--start-port <5000-65536> start port for backconnect ipv4 (default 30000)]
-                          [-l | --localhost <bool> allow connections only for localhost (backconnect on 127.0.0.1)]
-                          [-f | --backconnect-proxies-file <string> path to file, in which backconnect proxies list will be written
-                                when proxies start working (default \`~/proxyserver/backconnect_proxies.list\`)]                                                     
-                          [-m | --ipv6-mask <string> constant ipv6 address mask, to which the rotated part is added (or gateaway)
-                                use only if the gateway is different from the subnet address]
-                          [-i | --interface <string> full name of ethernet interface, on which IPv6 subnet was allocated
-                                automatically parsed by default, use ONLY if you have non-standard/additional interfaces on your server]
-                          [-b | --backconnect-ip <string> server IPv4 backconnect address for proxies
-                                automatically parsed by default, use ONLY if you have non-standard ip allocation on your server]
-                          [--allowed-hosts <string> allowed hosts or IPs (3proxy format), for example "google.com,*.google.com,*.gstatic.com"
-                                if at least one host is allowed, the rest are banned by default]
-                          [--denied-hosts <string> banned hosts or IP addresses in quotes (3proxy format)]
-                          [--uninstall <bool> disable active proxies, uninstall server and clear all metadata]
-                          [--info <bool> print info about running proxy server]
+                          [--random <bool> Tạo tên người dùng/mật khẩu ngẫu nhiên cho mỗi proxy kết nối ngược IPv4 thay vì được xác định trước (default false)] 
+                          [-t | --proxies-type <http|socks5> loại proxy type (default http)]
+                          [-r | --rotating-interval <0-59> thời gian luân phiên của địa chỉ proxy bên ngoài tính bằng phút (default 0, disabled)]
+                          [--rotate-every-request <bool> Xoay ngẫu nhiên khi kết nối (--rotating-interval sẽ bị bỏ qua)]
+                          [--start-port <5000-65536> cổng bắt đầu cho kết nối ngược ipv4 (default 30000)]
+                          [-l | --localhost <bool> chỉ cho phép kết nối cho localhost (backconnect on 127.0.0.1)]
+                          [-f | --backconnect-proxies-file <string> đường dẫn đến tệp, trong đó danh sách proxy backconnect sẽ được ghi
+				khi proxy bắt đầu hoạt động (default \`~/proxyserver/backconnect_proxies.list\`)]                                                     
+                          [-m | --ipv6-mask <string> mặt nạ địa chỉ ipv6 hằng số, trong đó phần được xoay vòng được thêm vào (or gateaway)
+                               chỉ sử dụng nếu cổng khác với địa chỉ mạng con]
+                          [-i | --interface <string> tên đầy đủ của giao diện ethernet, trên đó mạng con IPv6 được phân bổ
+				tự động phân tích cú pháp theo mặc định, CHỈ sử dụng nếu bạn có giao diện không chuẩn/bổ sung trên máy chủ của mình]
+                          [-b | --backconnect-ip <string>  địa chỉ kết nối ngược IPv4 của máy chủ cho proxy
+				được phân tích cú pháp tự động theo mặc định, CHỈ sử dụng nếu bạn có phân bổ ip không chuẩn trên máy chủ của mình]
+                          [--allowed-hosts <string> máy chủ hoặc IP được phép (định dạng 3proxy), ví dụ "google.com,*.google.com,*.gstatic.com"
+				nếu ít nhất một máy chủ được phép, các máy chủ còn lại sẽ bị cấm theo mặc định]
+                          [--denied-hosts <string>  máy chủ hoặc địa chỉ IP bị cấm trong dấu ngoặc kép (định dạng 3proxy)]
+                          [--uninstall <bool> vô hiệu hóa proxy đang hoạt động, gỡ cài đặt máy chủ và xóa tất cả siêu dữ liệu]
+                          [--info <bool> in thông tin về máy chủ proxy đang chạy]
                           " 1>&2; exit 1; }
 
 options=$(getopt -o lhs:c:u:p:t:r:m:f:i:b: --long help,rotate-every-request,localhost,random,uninstall,info,subnet:,proxy-count:,username:,password:,proxies-type:,rotating-interval:,ipv6-mask:,interface:,start-port:,backconnect-proxies-file:,backconnect-ip:,allowed-hosts:,denied-hosts: -- "$@")
